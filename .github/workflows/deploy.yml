@@ -2,7 +2,7 @@ name: Deploy
 on: push
 jobs:
   lint:
-    runs-on: ubunto-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Download code
         uses: actions/checkout@v3
@@ -15,7 +15,8 @@ jobs:
       - name: Run lint
         run: npm run lint
   test:
-    runs-on: ubunto-latest
+    needs: lint
+    runs-on: ubuntu-latest
     steps:
       - name: Download code
         uses: actions/checkout@v3
@@ -28,7 +29,8 @@ jobs:
       - name: Run tests
         run: npm run test
   build:
-    runs-on: ubunto-latest
+    needs: test
+    runs-on: ubuntu-latest
     steps:
       - name: Download code
         uses: actions/checkout@v3
