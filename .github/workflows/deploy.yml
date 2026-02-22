@@ -1,0 +1,42 @@
+name: Deploy
+on: push
+jobs:
+  lint:
+    runs-on: ubunto-latest
+    steps:
+      - name: Download code
+        uses: actions/checkout@v3
+      - name: Install NodeJS
+        uses: actions/setup-nodejs@v3
+        with:
+          node-version: 18
+      - name: Install Dependencies
+        run: npm ci
+      - name: Run lint
+        run: npm run lint
+  test:
+    runs-on: ubunto-latest
+    steps:
+      - name: Download code
+        uses: actions/checkout@v3
+      - name: Install NodeJS
+        uses: actions/setup-nodejs@v3
+        with:
+          node-version: 18
+      - name: Install Dependencies
+        run: npm ci
+      - name: Run tests
+        run: npm run test
+  build:
+    runs-on: ubunto-latest
+    steps:
+      - name: Download code
+        uses: actions/checkout@v3
+      - name: Install NodeJS
+        uses: actions/setup-nodejs@v3
+        with:
+          node-version: 18
+      - name: Install Dependencies
+        run: npm ci
+      - name: Run build
+        run: npm run build
